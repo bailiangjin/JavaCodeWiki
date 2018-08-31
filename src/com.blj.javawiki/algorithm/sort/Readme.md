@@ -156,7 +156,7 @@ public void sort(Integer[] array) {
 ：：     |快速排序   | O(N*log2N) |O(log2n)~O(n)|不稳定|简单|while{while-while-if}
 插入排序 |直接插入   | O(N2) |O(1)|稳定|简单|for循环-key-while循环
 ：：    |希尔排序   |O(N1.3)|O(1)| 不稳定|复杂
-选择排序 |直接选择排序| O(N2) |O(1)|不稳定|简单
+选择排序 |直接选择排序| O(N2) |O(1)|不稳定|简单|for-for-minIndex-swap
 ：：    |堆排序     | O(N*log2N) |O(1)|不稳定|复杂
 归并排序 |归并排序   |  O(N*log2N)|O(n)| 稳定| 复杂
 基数排序 |基数排序   |  O(d(r+n))|O(d(r+n))| 稳定| 复杂
