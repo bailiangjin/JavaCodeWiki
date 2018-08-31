@@ -46,27 +46,32 @@
 代码
 
 ```
-public void sort(Integer[] array) {
-
-        int n = array.length;
-        int minIndex;
-        int temp;
-        for (int i = 0; i < n - 1; i++) {
-            //未排序序列中最小数据数组下标
-            minIndex = i;
-
-            for (int j = i + 1; j < n; j++) {
-                if (array[minIndex] > array[j]) {
-                    //在未排序元素中继续寻找最小元素，并保存其下标
-                    minIndex = j;
+    /**
+     * 选择排序
+     *
+     * @param array
+     */
+    public void selectionSort(Integer[] array) {
+    
+            int n = array.length;
+            int minIndex;
+            int temp;
+            for (int i = 0; i < n - 1; i++) {
+                //未排序序列中最小数据数组下标
+                minIndex = i;
+    
+                for (int j = i + 1; j < n; j++) {
+                    if (array[minIndex] > array[j]) {
+                        //在未排序元素中继续寻找最小元素，并保存其下标
+                        minIndex = j;
+                    }
                 }
+                //将最小元素放到已排序序列的末尾
+                temp = array[minIndex];
+                array[minIndex] = array[i];
+                array[i] = temp;
             }
-            //将最小元素放到已排序序列的末尾
-            temp = array[minIndex];
-            array[minIndex] = array[i];
-            array[i] = temp;
         }
-    }
 
 ```
 
@@ -153,8 +158,8 @@ public void sort(Integer[] array) {
 类别     |算法名     | 平均时间复杂度 |空间复杂度    |稳定性   |复杂性 | 代码提示      
 ------- |----------|------------- |------------|--------|------|--------
 交换排序 |冒泡排序   | O(N2) |O(1)|稳定|简单|2层for循环
-：：     |快速排序   | O(N*log2N) |O(log2n)~O(n)|不稳定|简单|while{while-while-if}
-插入排序 |直接插入   | O(N2) |O(1)|稳定|简单|for循环-key-while循环
+：：     |快速排序   | O(N*log2N) |O(log2n)~O(n)|不稳定|简单|size>1-smaller-same-larger
+插入排序 |直接插入   | O(N2) |O(1)|稳定|简单|for-key-while
 ：：    |希尔排序   |O(N1.3)|O(1)| 不稳定|复杂
 选择排序 |直接选择排序| O(N2) |O(1)|不稳定|简单|for-for-minIndex-swap
 ：：    |堆排序     | O(N*log2N) |O(1)|不稳定|复杂
