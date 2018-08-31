@@ -1,4 +1,6 @@
-package com.blj.javawiki.algorithm.sort.interfaze;
+package com.blj.javawiki.algorithm.sort;
+
+import com.blj.javawiki.algorithm.sort.interfaze.ISort;
 
 /**
  * 归并排序

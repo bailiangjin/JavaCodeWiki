@@ -1,5 +1,10 @@
 # 排序算法总结
 [TOC]
+
+## 排序算法 动画演示  
+
+[排序动画演示一](https://github.com/liusaint/sortAnimation)
+
 ## 常用排序算法  
 
 
