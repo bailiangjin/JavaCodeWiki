@@ -11,8 +11,10 @@ import com.blj.javawiki.algorithm.sort.interfaze.ISort;
 public class MergeSort implements ISort<Integer[]> {
     @Override
     public void sort(Integer[] array) {
+        if (null == array || array.length <= 1) {
+            return;
+        }
         mergeSort(array);
-
     }
 
     /**

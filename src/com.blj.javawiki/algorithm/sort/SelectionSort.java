@@ -11,6 +11,9 @@ import com.blj.javawiki.algorithm.sort.interfaze.ISort;
 public class SelectionSort implements ISort<Integer[]> {
     @Override
     public void sort(Integer[] array) {
+        if (null == array || array.length <= 1) {
+            return;
+        }
 
         int n = array.length;
         int minIndex;

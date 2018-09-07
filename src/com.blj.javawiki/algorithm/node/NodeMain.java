@@ -13,13 +13,35 @@ public class NodeMain {
      * 单链表
      */
     public static class Node {
-        int data;
-        Node next;
+        public int data;
+        public Node next;
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+    }
+
+
+    public static void main(String[] args) {
+        Node head = new Node(1, new Node(2, new Node(3, new Node(4, null))));
+
+        Node reverseNode= reverseNode(head);
+
+        System.out.println(null == reverseNode ? "null" : reverseNode.data);
+
+//        Node findNode = findKthToTail(head, 6);
+//
+//
+//        System.out.println(null == findNode ? "null" : findNode.data);
+
     }
 
 
     /**
      * 反转单链表
+     *
      * @param head
      * @return
      */
@@ -44,6 +66,7 @@ public class NodeMain {
 
     /**
      * 递归反转
+     *
      * @param head
      * @return
      */
@@ -60,6 +83,40 @@ public class NodeMain {
         //next结点 指向当前节点
         next.next = head;
         return reversedNode;
+    }
+
+
+    /**
+     * 查找倒数第K个节点
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    private static Node findKthToTail(Node head, int k) {
+
+        Node aHead = head;
+        Node bHead = null;
+
+        int i = 0;
+        while (i < k - 1) {
+            if (null != aHead.next) {
+                aHead = aHead.next;
+            } else {
+                return null;
+            }
+            i++;
+        }
+
+        bHead = head;
+
+        while (aHead.next != null) {
+            aHead = aHead.next;
+            bHead = bHead.next;
+        }
+        return bHead;
+
+
     }
 
 }

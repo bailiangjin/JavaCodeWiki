@@ -37,7 +37,7 @@ public class QuickSort {
 
         @Override
         public void sort(List<Integer> items) {
-            if (items.size() <= 1) {
+            if (null == items || items.size() <= 1) {
                 return;
             }
 
@@ -71,8 +71,11 @@ public class QuickSort {
     public static class QuickSort2 implements IQuickSortArray {
         @Override
         public void sort(Integer[] array) {
-            quickSort(array, 0, array.length - 1);
+            if (null == array || array.length <= 1) {
+                return;
+            }
 
+            quickSort(array, 0, array.length - 1);
         }
 
         /**

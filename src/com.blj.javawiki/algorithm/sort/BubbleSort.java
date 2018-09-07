@@ -12,6 +12,9 @@ public class BubbleSort implements ISort<Integer[]> {
 
     @Override
     public void sort(Integer[] array) {
+        if (null == array || array.length <= 1) {
+            return;
+        }
         int n = array.length;
 
         for (int i = 0; i < n; i++) {
