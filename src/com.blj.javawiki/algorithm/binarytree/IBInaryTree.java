@@ -49,19 +49,21 @@ public interface IBInaryTree {
 
     /**
      * 是否互为镜像
+     *
      * @param t1
      * @param t2
      * @return
      */
-    boolean isMirror(BinaryTreeNode t1,BinaryTreeNode t2);
+    boolean isMirror(BinaryTreeNode t1, BinaryTreeNode t2);
 
     /**
      * 是否为两个相同的二叉树
+     *
      * @param t1
      * @param t2
      * @return
      */
-    boolean isSameTreeNode(BinaryTreeNode t1,BinaryTreeNode t2);
+    boolean isSameTreeNode(BinaryTreeNode t1, BinaryTreeNode t2);
 
     /**
      * 求二叉树的最大深度
@@ -89,9 +91,43 @@ public interface IBInaryTree {
 
     /**
      * 计算二叉树的叶子结点
+     *
      * @param root
      * @return
      */
     int countNumberOfNoChildNode(BinaryTreeNode root);
+
+    /**
+     * 计算第k层 结点数量
+     *
+     * @param root
+     * @param k
+     * @return
+     */
+    int numOfkLevelTreeNode(BinaryTreeNode root, int k);
+
+    /**
+     * 判断是否为平衡二叉树
+     * @param root
+     * @return
+     */
+    boolean isBalanced(BinaryTreeNode root);
+
+
+    /**
+     * 是否为满二叉树
+     * @param root
+     * @return
+     */
+    boolean isCompleteBinaryTree(BinaryTreeNode root);
+
+    /**
+     * 是否为满二叉树
+     * @param root
+     * @return
+     */
+    boolean isFullBinaryTree(BinaryTreeNode root);
+
+
 
 }

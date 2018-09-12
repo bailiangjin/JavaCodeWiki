@@ -1,5 +1,9 @@
 package com.blj.javawiki.algorithm.binarytree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingDeque;
+
 /**
  * 二叉树 算法实例
  *
@@ -194,5 +198,97 @@ public class BinaryTreeNodeImpl implements IBInaryTree {
 
     }
 
+    @Override
+    public int numOfkLevelTreeNode(BinaryTreeNode root, int k) {
+        if (root == null || k < 1) {
+            return 0;
+        }
+        if (k == 1) {
+            return 1;
+        }
+        int numOfLeft = numOfkLevelTreeNode(root.left, k - 1);
+        int numOfRight = numOfkLevelTreeNode(root.right, k - 1);
+        return numOfLeft + numOfRight;
+    }
 
+    @Override
+    public boolean isBalanced(BinaryTreeNode root) {
+        if (null == root) {
+            return true;
+        }
+        if (null == root.left && null == root.right) {
+            return true;
+        }
+
+        if (null != root.left && null != root.right) {
+            return isBalanced(root.left) && isBalanced(root.right);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean isCompleteBinaryTree(BinaryTreeNode root) {
+        if (null == root) {
+            return false;
+        }
+
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        boolean isHasNoChild = false;
+        while (!queue.isEmpty()) {
+            BinaryTreeNode currentNode = ((LinkedList<BinaryTreeNode>) queue).removeFirst();
+
+            if (isHasNoChild) {
+                if (null != currentNode.left || null != currentNode.right) {
+                    return false;
+                }
+            } else {
+                if (null == currentNode.left) {
+                    if (null != currentNode.right) {
+                        return false;
+                    } else {
+                        isHasNoChild = true;
+                    }
+                } else {
+                    queue.add(currentNode.left);
+                    if (null != currentNode.right) {
+                        queue.add(currentNode.right);
+                    } else {
+                        isHasNoChild = true;
+                    }
+
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isFullBinaryTree(BinaryTreeNode root) {
+
+        if (null == root) {
+            return false;
+        }
+
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            BinaryTreeNode currentNode = ((LinkedList<BinaryTreeNode>) queue).removeFirst();
+
+            if (null == currentNode.left && null != currentNode.right || null != currentNode.left && null == currentNode.right) {
+                return false;
+            }
+
+            if (null != currentNode.left && null != currentNode.right) {
+                queue.add(currentNode.left);
+                queue.add(currentNode.right);
+            }
+        }
+
+        return true;
+
+    }
 }
