@@ -118,8 +118,9 @@ public class BinaryTreeNodeImpl implements IBinaryTree<Integer> {
      * @param root
      * @return
      */
-    public ArrayList<Integer> inorderTraversalNoRecursion(BinaryTreeNode root) {
-        ArrayList<Integer> list = new ArrayList<>();
+    @Override
+    public List<Integer> inorderTraversalNoRecursion(BinaryTreeNode root) {
+        List<Integer> list = new ArrayList<>();
         Stack<BinaryTreeNode> stack = new Stack<>();
         BinaryTreeNode current = root;
         while (current != null || !stack.empty()) {

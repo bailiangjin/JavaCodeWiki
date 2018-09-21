@@ -47,6 +47,13 @@ public interface IBinaryTree<T extends Object> {
 
 
     /**
+     * 中序遍历 非递归
+     * @param root
+     * @return
+     */
+    List<Integer> inorderTraversalNoRecursion(BinaryTreeNode root);
+
+    /**
      * 4
      * 后序遍历二叉树
      *

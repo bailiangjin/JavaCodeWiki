@@ -29,7 +29,7 @@ public class BinaryTreeMain {
                         new BinaryTreeNode(15,
                                 new BinaryTreeNode(11, null, null), new BinaryTreeNode(16,null,null)));
 
-        BinaryTreeNodeImpl ibInaryTree = new BinaryTreeNodeImpl();
+        IBinaryTree ibInaryTree = new BinaryTreeNodeImpl();
 
 //        ibInaryTree.preOrderTraversal(root2);
         System.out.println();
