@@ -1,5 +1,7 @@
 package com.blj.javawiki.algorithm.binarytree;
 
+import java.util.List;
+
 /**
  * 二叉树
  *
@@ -22,10 +24,10 @@ public class BinaryTreeMain {
 
         BinaryTreeNode root2 =
                 new BinaryTreeNode(8,
-                        new BinaryTreeNode(9,
-                                new BinaryTreeNode(6, null, null), new BinaryTreeNode(7, null, null)),
-                        new BinaryTreeNode(2,
-                                new BinaryTreeNode(11, null, null), new BinaryTreeNode(12,null,null)));
+                        new BinaryTreeNode(5,
+                                new BinaryTreeNode(2, null, null), new BinaryTreeNode(6, null, null)),
+                        new BinaryTreeNode(15,
+                                new BinaryTreeNode(11, null, null), new BinaryTreeNode(16,null,null)));
 
         BinaryTreeNodeImpl ibInaryTree = new BinaryTreeNodeImpl();
 
@@ -39,16 +41,32 @@ public class BinaryTreeMain {
 //        System.out.println("isTree2HasTree2=" + isHas);
 
 
-        System.out.println("最小深度" + ibInaryTree.getMinDepth(root));
-        System.out.println("最大深度" + ibInaryTree.getMaxDepth(root));
+//        System.out.println("最小深度" + ibInaryTree.getMinDepth(root));
+//        System.out.println("最大深度" + ibInaryTree.getMaxDepth(root));
+//
+//
+//        System.out.println("总结点数" + ibInaryTree.countNumOfTreeNode(root));
+//        System.out.println("叶子结点数" + ibInaryTree.countNumOfTreeNode(root));
+//
+//        System.out.println("是否平衡二叉树" + ibInaryTree.isBalanced(root2));
+//        System.out.println("是否完全二叉树" + ibInaryTree.isCompleteBinaryTree(root2));
+//        System.out.println("是否满二叉树" + ibInaryTree.isFullBinaryTree(root2));
+//        System.out.println("中序遍历-非递归-二叉树" + ibInaryTree.inorderTraversalNoRecursion(root2));
 
+        List<Integer> list = ibInaryTree.postOrderTraversalNoRecursion(root2);
 
-        System.out.println("总结点数" + ibInaryTree.countNumOfTreeNode(root));
-        System.out.println("叶子结点数" + ibInaryTree.countNumOfTreeNode(root));
+        for(Integer item:list){
+            System.out.print(item+" ");
+        }
+        System.out.println();
 
-        System.out.println("是否平衡二叉树" + ibInaryTree.isBalanced(root2));
-        System.out.println("是否完全二叉树" + ibInaryTree.isCompleteBinaryTree(root2));
-        System.out.println("是否满二叉树" + ibInaryTree.isFullBinaryTree(root2));
-
+        ibInaryTree.levelOrderTraversal(root2);
+        ibInaryTree.insertNode(root2,new BinaryTreeNode<>(3,null,null));
+        ibInaryTree.insertNode(root2,new BinaryTreeNode<>(12,null,null));
+        ibInaryTree.insertNode(root2,new BinaryTreeNode<>(14,null,null));
+        ibInaryTree.insertNode(root2,new BinaryTreeNode<>(17,null,null));
+        ibInaryTree.insertNode(root2,new BinaryTreeNode<>(18,null,null));
+        ibInaryTree.insertNode(root2,new BinaryTreeNode<>(20,null,null));
+        ibInaryTree.levelOrderTraversal(root2);
     }
 }

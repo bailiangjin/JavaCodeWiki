@@ -1,8 +1,6 @@
 package com.blj.javawiki.algorithm.binarytree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.*;
 
 /**
  * 二叉树 算法实例
@@ -10,7 +8,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  * @author bailiangjin
  * @date 2018/9/9
  */
-public class BinaryTreeNodeImpl implements IBInaryTree {
+public class BinaryTreeNodeImpl implements IBinaryTree<Integer> {
     @Override
     public boolean hasSubtree(BinaryTreeNode root1, BinaryTreeNode root2) {
 
@@ -51,6 +49,90 @@ public class BinaryTreeNodeImpl implements IBInaryTree {
 
         return isTree1HasTree2(root1.left, root2.left)
                 && isTree1HasTree2(root1.right, root2.right);
+    }
+
+
+    @Override
+    public ArrayList<Integer> preOrderTraversalNoRecursion(BinaryTreeNode root) {
+
+        ArrayList<Integer> list = new ArrayList<>();
+        if (root == null) {
+            return list;
+        }
+
+        Stack<BinaryTreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.empty()) {
+            BinaryTreeNode node = stack.pop();
+            list.add((Integer) node.value);
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+
+        }
+        return list;
+    }
+
+    /**
+     * 非递归后序遍历
+     *
+     * @param root
+     */
+    @Override
+    public List<Integer> postOrderTraversalNoRecursion(BinaryTreeNode root) {
+        List<Integer> rstList = new ArrayList();
+        Stack<BinaryTreeNode> stack = new Stack<>();
+        if (root == null) {
+            return rstList;
+        }
+
+        BinaryTreeNode curNode = null;
+        BinaryTreeNode pre = null;
+        stack.push(root);
+        while (!stack.empty()) {
+            curNode = stack.peek();
+            if ((curNode.left == null && curNode.right == null)
+                    || (pre != null && (curNode.left == pre || curNode.right == pre))) {
+                BinaryTreeNode temp = stack.pop();
+                rstList.add((Integer) temp.value);
+                pre = temp;
+            } else {
+                if (curNode.right != null) {
+                    stack.push(curNode.right);
+                }
+                if (curNode.left != null) {
+                    stack.push(curNode.left);
+                }
+            }
+        }
+        return rstList;
+    }
+
+
+    /**
+     * 中序遍历 非递归
+     *
+     * @param root
+     * @return
+     */
+    public ArrayList<Integer> inorderTraversalNoRecursion(BinaryTreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Stack<BinaryTreeNode> stack = new Stack<>();
+        BinaryTreeNode current = root;
+        while (current != null || !stack.empty()) {
+            while (current != null) {
+                stack.add(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            list.add((Integer) current.value);
+            current = current.right;
+
+        }
+        return list;
     }
 
 
@@ -97,6 +179,37 @@ public class BinaryTreeNodeImpl implements IBInaryTree {
     }
 
     @Override
+    public void levelOrderTraversal(BinaryTreeNode root) {
+        if (root == null) {
+            System.out.println("输入为空树");
+            return;
+        }
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        System.out.println("开始分层遍历树");
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                BinaryTreeNode node = ((LinkedList<BinaryTreeNode>) queue).removeFirst();
+                System.out.print(node.value + " ");
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+
+//                if(null==node.left&&null==node.right){
+//                    System.out.print("\t");
+//                }
+            }
+            System.out.println();
+        }
+
+        System.out.println("结束分层遍历树");
+    }
+
+    @Override
     public void mirror(BinaryTreeNode root) {
         if (null == root) {
             return;
@@ -133,7 +246,7 @@ public class BinaryTreeNodeImpl implements IBInaryTree {
     }
 
     @Override
-    public boolean isSameTreeNode(BinaryTreeNode t1, BinaryTreeNode t2) {
+    public boolean isSame(BinaryTreeNode t1, BinaryTreeNode t2) {
         if (null == t1 && null == t2) {
             return true;
         }
@@ -146,7 +259,7 @@ public class BinaryTreeNodeImpl implements IBInaryTree {
             return true;
         }
 
-        return isSameTreeNode(t1.left, t2.left) && isSameTreeNode(t1.right, t2.right);
+        return isSame(t1.left, t2.left) && isSame(t1.right, t2.right);
     }
 
 
@@ -228,7 +341,7 @@ public class BinaryTreeNodeImpl implements IBInaryTree {
     }
 
     @Override
-    public boolean isCompleteBinaryTree(BinaryTreeNode root) {
+    public boolean isCompleteBinaryTree(BinaryTreeNode<Integer> root) {
         if (null == root) {
             return false;
         }
@@ -291,4 +404,33 @@ public class BinaryTreeNodeImpl implements IBInaryTree {
         return true;
 
     }
+
+    @Override
+    public BinaryTreeNode insertNode(BinaryTreeNode<Integer> root, BinaryTreeNode<Integer> node) {
+        if (root == node) {
+            return node;
+        }
+        BinaryTreeNode tmp = root;
+        BinaryTreeNode last = null;
+        while (tmp != null) {
+            last = tmp;
+            if ((int) tmp.value > (int) node.value) {
+                tmp = tmp.left;
+            } else {
+                tmp = tmp.right;
+            }
+        }
+        if (last != null) {
+            if ((int) last.value > (int) node.value) {
+                last.left = node;
+            } else {
+                last.right = node;
+            }
+        }
+        return root;
+    }
+
+
 }
+
+
