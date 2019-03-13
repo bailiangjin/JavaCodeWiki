@@ -8,7 +8,7 @@ import java.util.*;
  * @author bailiangjin
  * @date 2018/9/9
  */
-public class BinaryTreeNodeImpl implements IBinaryTree<Integer> {
+public class BinaryTreeNodeImpl implements IBinaryTree1<Integer> {
     @Override
     public boolean hasSubtree(BinaryTreeNode root1, BinaryTreeNode root2) {
 
