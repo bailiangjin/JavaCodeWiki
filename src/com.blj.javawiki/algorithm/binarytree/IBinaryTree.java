@@ -8,7 +8,7 @@ import java.util.List;
  * @author bailiangjin
  * @date 2018/9/9
  */
-public interface IBinaryTree1<T extends Object> {
+public interface IBinaryTree<T extends Object> {
 
     /**
      * 1
