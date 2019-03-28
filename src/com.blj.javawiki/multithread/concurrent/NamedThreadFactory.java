@@ -31,7 +31,6 @@ public class NamedThreadFactory implements ThreadFactory {
     private final ThreadGroup mThreadGroup;
 
     public NamedThreadFactory() {
-//        this("Kevin-ThreadPool-" + threadNumber.getAndIncrement(), false);
         this("Kevin-ThreadPool", false);
     }
 
