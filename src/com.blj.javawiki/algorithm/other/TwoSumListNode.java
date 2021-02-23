@@ -1,6 +1,5 @@
 package com.blj.javawiki.algorithm.other;
 
-import java.math.BigDecimal;
 
 /**
  * //TODO 添加类注释
@@ -26,7 +25,7 @@ public class TwoSumListNode {
                                                                                 ))))))))));
         ListNode result = new Solution().addTwoNumbers(l1, l2);
 
-        System.out.println(Solution.toNumber(result, 0, 0));
+        System.out.println(Solution.toNumber(result));
     }
 
 
@@ -43,104 +42,107 @@ public class TwoSumListNode {
     static class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-            ListNode resutHead = null;
-            ListNode resutTail = null;
+            ListNode resultHead = null;
+            ListNode resultTail = null;
 
             ListNode mHead = l1;
-            ListNode nHead =l2;
+            ListNode nHead = l2;
 
-            int uper = 0;
+            int upper = 0;
 
-
-            boolean mEnd= null ==l1;
-            boolean nEnd = null ==l2;
-
-            while (!mEnd ||!mEnd){
-                if(mEnd){
-                    resutTail.next = new ListNode(nHead.val);
+            int sum;
+            int curValue;
+            int countValue;
+            while (null != mHead || null != nHead) {
+                if (null == mHead) {
+                    countValue = nHead.val;
                     nHead = nHead.next;
-                    continue;
+                } else if (null == nHead) {
+                    countValue = mHead.val;
+                    mHead = mHead.next;
+                } else {
+                    countValue = mHead.val + nHead.val;
+                    mHead = mHead.next;
+                    nHead = nHead.next;
                 }
 
-                if(nEnd){
-                    resutTail.next = new ListNode(mHead.val);
-                    nHead = mHead.next;
-                    continue;
+                sum = upper + countValue;
+
+                curValue = sum % 10;
+
+                if (sum >= 10) {
+                    upper = sum / 10;
+                } else {
+                    upper = 0;
                 }
 
+                if (null == resultTail) {
+                    resultTail = new ListNode(curValue);
+                } else {
+                    resultTail.next = new ListNode(curValue);
+                }
 
-
-                 int sum = uper+   mHead.val +nHead.val;
-
-
+                if (null == resultHead) {
+                    resultHead = resultTail;
+                }
             }
-
-
-            BigDecimal num1;
-            BigDecimal num2;
-            BigDecimal sum;
-
-            num1 = toNumber(l1, 0, 0);
-            num2 = toNumber(l2, 0, 0);
-            System.out.println("num1=" + num1);
-            System.out.println("num2=" + num2);
-            sum = num1 + num2;
-
-            return toListNode(sum);
-
+            return resultHead;
         }
 
-        static ListNode toListNode(long sum) {
+//        static ListNode toListNode(long sum) {
+//
+//            if (0 == sum) {
+//                return new ListNode(0);
+//            }
+//
+//            ListNode head = null;
+//            ListNode lastNode = null;
+//            long toParseNum = sum;
+//            while (toParseNum != 0) {
+//
+//                ListNode curNode = new ListNode((int) (toParseNum % 10));
+//                if (null == head) {
+//                    head = curNode;
+//                }
+//
+//                if (null != lastNode) {
+//                    lastNode.next = curNode;
+//                }
+//                toParseNum = toParseNum / 10;
+//                lastNode = curNode;
+//            }
+//
+//            return head;
+//        }
 
-            if (0 == sum) {
-                return new ListNode(0);
-            }
-
-            ListNode head = null;
-            ListNode lastNode = null;
-            long toParseNum = sum;
-            while (toParseNum != 0) {
-
-                ListNode curNode = new ListNode((int) (toParseNum % 10));
-                if (null == head) {
-                    head = curNode;
-                }
-
-                if (null != lastNode) {
-                    lastNode.next = curNode;
-                }
-                toParseNum = toParseNum / 10;
-                lastNode = curNode;
-            }
-
-            return head;
-        }
-
-        static BigDecimal toNumber(ListNode listNode, BigDecimal number, int power) {
+        static String toNumber(ListNode listNode) {
 
             if (null == listNode) {
-                return number;
+                return "" + 0;
+            }
+            StringBuffer stringBuffer = new StringBuffer();
+            ListNode head = listNode;
+            while (null != head) {
+//                System.out.print(head.val);
+                stringBuffer.append(head.val);
+                head = head.next;
             }
 
-            BigDecimal plusValue = listNode.val * BigDecimal.valueOf(Math.pow(10, power)) ;
-            System.out.println("plusValue=" + plusValue);
-            number +=plusValue;
-
-            return toNumber(listNode.next, number, power + 1);
+            return stringBuffer.toString();
 
         }
 
-        ListNode reverse(ListNode head) {
-            if (head == null || head.next == null) {
-                //最终返回原来的尾结点
-                return head;
-            }
-            ListNode next = head.next;
-            head.next = null;
-            ListNode reversedNode = reverse(next);
-            next.next = head;
-            return reversedNode;
-        }
+//        ListNode reverse(ListNode head) {
+//            if (head == null || head.next == null) {
+//                //最终返回原来的尾结点
+//                return head;
+//            }
+//            ListNode next = head.next;
+//            head.next = null;
+//            ListNode reversedNode = reverse(next);
+//            next.next = head;
+//            return reversedNode;
+//        }
     }
 
 
