@@ -58,4 +58,34 @@ public class FindArrayMiddleNumber {
             }
         }
     }
+
+    class Solution2 {
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            int m = nums1.length;
+            int n = nums2.length;
+            int[] ans;
+            int i = 0, j = 0, k = 0;
+            ans = new int[(m + n) / 2 + 1];
+            while(k < ans.length) {
+                if(i >= m) {
+                    ans[k++] = nums2[j++];
+                    continue;
+                }
+                if(j >= n) {
+                    ans[k++] = nums1[i++];
+                    continue;
+                }
+                if(nums1[i] < nums2[j]) {
+                    ans[k++] = nums1[i++];
+                } else {
+                    ans[k++] = nums2[j++];
+                }
+            }
+            if((m + n) % 2 == 0) {
+                return (double)(ans[k - 1] + ans[k - 2]) / 2.0;
+            } else {
+                return (double)ans[k-1];
+            }
+        }
+    }
 }
