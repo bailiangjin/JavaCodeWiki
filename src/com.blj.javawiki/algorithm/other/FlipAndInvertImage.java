@@ -36,34 +36,24 @@ public class FlipAndInvertImage {
 
 
     public static void main(String[] args) {
-        System.out.println(0^1);
-        System.out.println(0^0);
-        System.out.println(1^0);
-        System.out.println(1^1);
+        System.out.println(0 ^ 1);
+        System.out.println(0 ^ 0);
+        System.out.println(1 ^ 0);
+        System.out.println(1 ^ 1);
 
     }
 
     class Solution {
         public int[][] flipAndInvertImage(int[][] A) {
 
-            for (int i = 0; i < A.length; i++) {
+            for (int[] row : A) {
 
-                 int length = A[i].length;
-                for (int j = 0; j < A[i].length / 2; j++) {
-                    if(j ==A[i].length -j){
-                        A[i][j] = A[i][j];
-                        continue;
-                    }
-                    if(A[i][j] ==A[i][A[i].length - 1 - j]){
-                        A[i][j] = A[i][j];
-                        A[i][A[i].length - 1 - j] = A[i][j];
-                        continue;
-                    }
-                    int temp = A[i][j];
-                    A[i][j] = A[i][A[i].length - 1 - j];
-                    A[i][A[i].length - 1 - j] = temp;
+                int length = row.length;
+                for (int j = 0; j < (length + 1) / 2; j++) {
+                    int temp = 1 ^ row[j];
+                    row[j] = 1 ^ row[length - 1 - j];
+                    row[length - 1 - j] = temp;
                 }
-                //A[i].length;
             }
 
             return A;
