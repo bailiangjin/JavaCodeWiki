@@ -42,52 +42,41 @@ public class TwoSumListNode {
     static class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-            ListNode resultHead = null;
-            ListNode resultTail = null;
-
-            ListNode mHead = l1;
-            ListNode nHead = l2;
+            ListNode result = null;
+            ListNode current = null;
 
             int upper = 0;
 
-            int sum;
-            int curValue;
-            int countValue;
-            while (null != mHead || null != nHead) {
-                if (null == mHead) {
-                    countValue = nHead.val;
-                    nHead = nHead.next;
-                } else if (null == nHead) {
-                    countValue = mHead.val;
-                    mHead = mHead.next;
+            while (null != l1 || null != l2 || upper != 0) {
+
+                int l1Value = null ==l1? 0: l1.val;
+                int l2Value = null ==l2? 0: l2.val;
+
+                int sum = upper +l1Value +l2Value;
+
+                upper = sum / 10;
+
+
+                if (null == current) {
+                    current = new ListNode(sum % 10);
+                    result = current;
                 } else {
-                    countValue = mHead.val + nHead.val;
-                    mHead = mHead.next;
-                    nHead = nHead.next;
+                    current.next = new ListNode(sum % 10);
+                    current = current.next;
                 }
 
-                sum = upper + countValue;
-
-                curValue = sum % 10;
-
-                if (sum >= 10) {
-                    upper = sum / 10;
-                } else {
-                    upper = 0;
+                if(null !=l1){
+                    l1 = l1.next;
                 }
 
-                if (null == resultTail) {
-                    resultTail = new ListNode(curValue);
-                } else {
-                    resultTail.next = new ListNode(curValue);
-                }
-
-                if (null == resultHead) {
-                    resultHead = resultTail;
+                if(null !=l2){
+                    l2 = l2.next;
                 }
             }
-            return resultHead;
+
+            return result;
         }
+
 
 //        static ListNode toListNode(long sum) {
 //

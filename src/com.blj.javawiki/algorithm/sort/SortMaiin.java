@@ -1,9 +1,7 @@
 package com.blj.javawiki.algorithm.sort;
 
 
-import com.sun.tools.javac.util.List;
 
-import java.util.ArrayList;
 
 /**
  * 排序
