@@ -31,6 +31,14 @@ public class ThreeSum {
 //            0 <= nums.length <= 3000
 //            -105 <= nums[i] <= 105
 
+    public static void main(String[] args) {
+        int[] nums = new int[]{
+                -1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4};
+
+        System.out.println(new Solution2().threeSum(nums).toString());
+
+    }
+
     class Solution {
         public List<List<Integer>> threeSum(int[] nums) {
             List<List<Integer>> resultList = new ArrayList<>();
@@ -65,37 +73,52 @@ public class ThreeSum {
         }
     }
 
-    class Solution2 {
+    static class Solution2 {
         public List<List<Integer>> threeSum(int[] nums) {
             List<List<Integer>> resultList = new ArrayList<>();
             if (nums.length < 3) {
                 return resultList;
             }
-            Arrays.sort(nums);
 
-            HashMap<String, int[]> resultMap = new HashMap<>();
+            if (nums.length == 3) {
+                if (nums[0] + nums[1] + nums[2] == 0) {
+                    List<Integer> itemList = Arrays.stream(nums).boxed().collect(Collectors.toList());
+                    resultList.add(itemList);
+                }
+
+                return resultList;
+            }
+
+            //排序转换为有序数组
+            Arrays.sort(nums);
+            //System.out.println(Arrays.toString(nums));
 
             for (int i = 0; i < nums.length - 2; i++) {
-                for (int j = i + 1; j < nums.length - 1; j++) {
-                    for (int k = j + 1; k < nums.length; k++) {
-                        if (0 == nums[i] + nums[j] + nums[k]) {
-                            int[] itemArray = new int[]{nums[i], nums[j], nums[k]};
-                            Arrays.sort(itemArray);
-                            String key = Arrays.toString(itemArray);
-                            if (!resultMap.containsKey(key)) {
-                                resultMap.put(key, itemArray);
+                if (i == 0 || nums[i] != nums[i - 1]) {
+                    int target = -nums[i];
+
+                    int left = i + 1;
+                    int right = nums.length - 1;
+                    while (left < right) {
+                        int total = nums[left] + nums[right];
+                        if (total < target) {
+                            left++;
+                        } else if (target == total) {
+                            if (left == i + 1 || nums[left] != nums[left - 1]) {
+                                int[] itemArray = new int[]{nums[i], nums[left], nums[right]};
+                                List<Integer> itemList = Arrays.stream(itemArray).boxed().collect(Collectors.toList());
+                                resultList.add(itemList);
                             }
+                            left++;
+                            right--;
+                        } else {
+                            right--;
                         }
                     }
                 }
+
             }
 
-            if (!resultMap.isEmpty()) {
-                for (int[] item : resultMap.values()) {
-                    List<Integer> itemList = Arrays.stream(item).boxed().collect(Collectors.toList());
-                    resultList.add(itemList);
-                }
-            }
             return resultList;
         }
     }
