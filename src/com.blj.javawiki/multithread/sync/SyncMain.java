@@ -1,25 +1,26 @@
-package com.blj.javawiki.multithread.tongbu;
+package com.blj.javawiki.multithread.sync;
+
+import java.util.concurrent.locks.Lock;
 
 /**
  * Created by bailiangjin on 2017/7/10.
  */
-public class Tongbu {
+public class SyncMain {
 
     //    private   volatile Integer number=0;
     private Integer number = 0;
 
     public static void main(String[] args) {
 
-       final Tongbu tongbu = new Tongbu();
-        Tongbu tongbu2 = new Tongbu();
+        final SyncMain syncMain = new SyncMain();
+        SyncMain syncMain2 = new SyncMain();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 for (int i = 0; i < 10000; i++)
                     if (i % 100 == 0) {
-                        tongbu.count("线程1");
-
+                        syncMain.countSyncClass("线程1");
                     }
             }
         }).start();
@@ -29,7 +30,7 @@ public class Tongbu {
             public void run() {
                 for (int i = 0; i < 10000; i++)
                     if (i % 100 == 0) {
-                        tongbu.count2("线程2");
+                        syncMain.countSyncValue("线程2");
                     }
             }
         }).start();
@@ -39,7 +40,7 @@ public class Tongbu {
             public void run() {
                 for (int i = 0; i < 10000; i++)
                     if (i % 100 == 0) {
-                        tongbu.count("线程3");
+                        syncMain.countSyncClass("线程3");
                     }
             }
         }).start();
@@ -49,24 +50,42 @@ public class Tongbu {
             public void run() {
                 for (int i = 0; i < 10000; i++)
                     if (i % 100 == 0) {
-                        tongbu.count2("线程4");
+                        syncMain.countSyncValue("线程4");
                     }
             }
         }).start();
 
+        Lock lock;
 
     }
 
-    public void count(String threadName) {
+    public synchronized void countSyncFunction(String threadName) {
+        System.out.println(threadName + " value=" + number++ + " time=" + System.currentTimeMillis());
+    }
+
+    public void countSyncValue(String threadName) {
 
         synchronized (number) {
             System.out.println(threadName + " value=" + number++ + " time=" + System.currentTimeMillis());
         }
     }
 
-    public void count2(String threadName) {
+    public void countSyncObj(String threadName) {
+        synchronized (this) {
+            System.out.println(threadName + " value=" + number++ + " time=" + System.currentTimeMillis());
+        }
+    }
 
-        synchronized (number) {
+    public void countSyncClass(String threadName) {
+
+        synchronized (SyncMain.class) {
+            System.out.println(threadName + " value=" + number++ + " time=" + System.currentTimeMillis());
+        }
+    }
+
+    public void countSyncClass2(String threadName) {
+
+        synchronized (SyncMain.class) {
             System.out.println(threadName + " value=" + number++ + " time=" + System.currentTimeMillis());
         }
     }

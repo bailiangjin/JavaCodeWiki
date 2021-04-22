@@ -99,12 +99,7 @@ public class ReconnectQueue implements Runnable{
             }
         });
 
-
-
-
-
         Thread thread3= new Thread(reconnectQueue);
-
         thread1.start();
         thread2.start();
         thread3.start();

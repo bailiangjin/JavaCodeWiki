@@ -1,4 +1,4 @@
-package com.blj.javawiki.multithread.tongbu;
+package com.blj.javawiki.multithread.sync;
 
 import java.util.concurrent.CountDownLatch;
 

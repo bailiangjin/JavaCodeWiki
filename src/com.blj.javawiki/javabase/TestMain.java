@@ -1,10 +1,14 @@
 package com.blj.javawiki.javabase;
 
 /**
- * //TODO 添加类注释
+ * 测试类
  *
  * @author bailiangjin
  * @date 2019/3/27
  */
 public class TestMain {
+
+    public static void main(String[] args) {
+        System.out.println("Double.MAX_VALUE=" + Double.MAX_VALUE);
+    }
 }
