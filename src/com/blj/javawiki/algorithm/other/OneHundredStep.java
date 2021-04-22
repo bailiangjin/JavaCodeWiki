@@ -8,7 +8,7 @@ package com.blj.javawiki.algorithm.other;
  */
 public class OneHundredStep {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.print(countSteps(100));
     }
 
@@ -26,6 +26,5 @@ public class OneHundredStep {
         }
 
         return countSteps(stepLeft - 1) + countSteps(stepLeft - 2);
-
     }
 }

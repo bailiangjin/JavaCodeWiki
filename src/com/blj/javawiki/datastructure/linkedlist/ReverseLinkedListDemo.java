@@ -9,20 +9,20 @@ public class ReverseLinkedListDemo {
     public static void main(String[] args) {
 
         Node head = new Node("1", new Node("2", new Node("3", null)));
-        Node insertHead = new Node("insert1", new Node("insert2", new Node("insert3", null)));
+//        Node insertHead = new Node("insert1", new Node("insert2", new Node("insert3", null)));
 
         printLinkedList(head);
 
-//        head = reverse(head);
-//
-//        printLinkedList(head);
+        head = reverse(head);
+
+        printLinkedList(head);
 //
 //        head = insert(head, insertHead);
 //        printLinkedList(head);
 //        head=delete(head,"2");
 
-        head=merge(insertHead,head);
-        printLinkedList(head);
+//        head=merge(insertHead,head);
+//        printLinkedList(head);
 
     }
 

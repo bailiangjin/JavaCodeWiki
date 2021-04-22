@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface Runnable {
++ {abstract} void run
+}
+
+class Thread{
+    - long tid
+    - ThreadGroup group
+    - volatile int threadStatus = 0
+    - boolean daemon = false
+    - boolean stillborn = false
+    - Runnable target
+    - ClassLoader contextClassLoader
+    - {static} long threadSeqNumber
+    + {static} int MIN_PRIORITY = 1
+    + {static} int NORM_PRIORITY = 5
+    + {static} int MAX_PRIORITY = 10
+
+    + void start()
+    + {static} void sleep(long millis, int nanos)
+    + void run()
+    + void interrupt()
+    + boolean isInterrupted()
+    + {static} boolean interrupted()
+    + {static} native void yield()
+    + {static} native void sleep(long millis) throws InterruptedException
+    + void setPriority
+    - {static} long nextThreadID()
+    - void exit()
+
+}
+Runnable <|-- Thread
+
+@enduml

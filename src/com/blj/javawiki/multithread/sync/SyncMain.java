@@ -18,40 +18,44 @@ public class SyncMain {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 10000; i++)
+                for (int i = 0; i < 10000; i++) {
                     if (i % 100 == 0) {
                         syncMain.countSyncClass("线程1");
                     }
+                }
             }
         }).start();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 10000; i++)
+                for (int i = 0; i < 10000; i++) {
                     if (i % 100 == 0) {
                         syncMain.countSyncValue("线程2");
                     }
+                }
             }
         }).start();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 10000; i++)
+                for (int i = 0; i < 10000; i++) {
                     if (i % 100 == 0) {
                         syncMain.countSyncClass("线程3");
                     }
+                }
             }
         }).start();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 10000; i++)
+                for (int i = 0; i < 10000; i++) {
                     if (i % 100 == 0) {
                         syncMain.countSyncValue("线程4");
                     }
+                }
             }
         }).start();
 
