@@ -10,5 +10,6 @@ public class TestMain {
 
     public static void main(String[] args) {
         System.out.println("Double.MAX_VALUE=" + Double.MAX_VALUE);
+        System.out.println("RenMinBi.class.name=" + RenMinBi.class.getName());
     }
 }
