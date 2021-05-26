@@ -22,10 +22,10 @@ public class MergeSort implements ISort<Integer[]> {
      *
      * @param array an array of Comparable items.
      */
-    public static <AnyType extends Comparable<? super AnyType>>
-    void mergeSort(AnyType[] array) {
+    public static <T extends Comparable<? super T>>
+    void mergeSort(T[] array) {
 
-        AnyType[] tmpArray = (AnyType[]) new Comparable[array.length];
+        T[] tmpArray = (T[]) new Comparable[array.length];
 
         mergeSort(array, tmpArray, 0, array.length - 1);
     }
@@ -38,8 +38,8 @@ public class MergeSort implements ISort<Integer[]> {
      * @param left     the left-most index of the subarray.
      * @param right    the right-most index of the subarray.
      */
-    private static <AnyType extends Comparable<? super AnyType>>
-    void mergeSort(AnyType[] array, AnyType[] tmpArray, int left, int right) {
+    private static <T extends Comparable<? super T>>
+    void mergeSort(T[] array, T[] tmpArray, int left, int right) {
         if (left < right) {
             int center = (left + right) / 2;
             mergeSort(array, tmpArray, left, center);
@@ -57,7 +57,7 @@ public class MergeSort implements ISort<Integer[]> {
      * @param rightPos the index of the start of the second half.
      * @param rightEnd the right-most index of the subarray.
      */
-    private static <AnyType extends Comparable<? super AnyType>> void merge(AnyType[] array, AnyType[] tmpArray, int leftPos, int rightPos, int rightEnd) {
+    private static <T extends Comparable<? super T>> void merge(T[] array, T[] tmpArray, int leftPos, int rightPos, int rightEnd) {
         int leftEnd = rightPos - 1;
         int tmpPos = leftPos;
         int numElements = rightEnd - leftPos + 1;
