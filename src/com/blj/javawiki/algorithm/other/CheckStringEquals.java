@@ -3,7 +3,7 @@ package com.blj.javawiki.algorithm.other;
 import java.util.Arrays;
 
 /**
- * //TODO 添加类注释
+ * 判断字符串是否相等
  *
  * @author bailiangjin
  * @date 2021/4/21
