@@ -1,7 +1,7 @@
 package com.blj.javawiki.algorithm.other;
 
 /**
- * 检测是否是2的n词方
+ * 检测是否是2的n次方
  *
  * @author bailiangjin
  * @date 2021/4/3
