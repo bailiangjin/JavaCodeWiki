@@ -25,13 +25,13 @@ public class ExecutorTest {
         }
        cachedThreadPool.execute(new Runnable() {
             public void run() {
-                executorTest.numberDecrese();
+                executorTest.numberDecrease();
                 System.out.println("CachedThreadPool"+ executorTest.number);
             }
         });
        singleThreadExecutor.execute(new Runnable() {
             public void run() {
-                executorTest.numberDecrese();
+                executorTest.numberDecrease();
                 System.out.println("SingleThreadExecutor"+ executorTest.number);
             }
         });
@@ -42,7 +42,7 @@ public class ExecutorTest {
         number++;
     }
 
-    public synchronized void numberDecrese(){
+    public synchronized void numberDecrease(){
         number--;
     }
 
