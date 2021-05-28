@@ -6,14 +6,14 @@ package com.blj.javawiki.javabase.enums;
  * @author blj
  * 
  */
-public interface EnumInterFace
+public interface EnumInterfaze
 {
-	enum Coffee implements EnumInterFace
+	enum Coffee implements EnumInterfaze
 	{
 		BLACK_COFFEE, DECAF_COFFEE, LATTE, CAPPUCCINO
 	}
 
-	enum Dessert implements EnumInterFace
+	enum Dessert implements EnumInterfaze
 	{
 		FRUIT, CAKE, GELATO
 	}

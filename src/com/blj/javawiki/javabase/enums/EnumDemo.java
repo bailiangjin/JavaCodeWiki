@@ -8,5 +8,5 @@ package com.blj.javawiki.javabase.enums;
  */
 public enum EnumDemo
 {
-	SUCCESS, FAILED, ERRROR
+	SUCCESS, FAILED, ERROR
 }
