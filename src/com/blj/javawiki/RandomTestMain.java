@@ -1,6 +1,7 @@
 package com.blj.javawiki;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class RandomTestMain {
     public static void main(String[] args) {
@@ -42,4 +43,82 @@ public class RandomTestMain {
             array[j + 1] = key;
         }
     }
+}
+
+class Solution {
+
+    public String reverseParentheses(String s) {
+
+        StringBuffer sb = new StringBuffer();
+        char[] arr = s.toCharArray();
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] == '(') {
+                stack.push(i);
+            }
+
+            if (arr[i] == ')') {
+                reverse(arr, stack.pop() + 1, i - 1);
+            }
+        }
+
+        for (char c : arr) {
+            if (c != ')' && c != '(') {
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public void reverse(char[] arr, int left, int right) {
+
+        while (right > left) {
+
+            char tmp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = tmp;
+            right--;
+            left++;
+        }
+    }
+//    public String reverseParentheses2(String s) {
+//
+//        Stack<Object> stack = new Stack<>();
+//        StringBuffer stringBuffer = new StringBuffer();
+//        int startCount = 0;
+//        int endCount = 0;
+//
+//        char[] chars = s.toCharArray();
+//        for (char c : chars) {
+//            if (stack.isEmpty()) {
+//                stringBuffer.append(c);
+//            } else if (')' == c && endCount == startCount - 1) {
+//                // TODO: 2021/5/26 pop all
+//                while (!stack.isEmpty()){
+//                    Object character = stack.pop();
+//                    if('(' == character){
+//                        startCount--;
+//                    }else if(')' == character){
+//                        endCount--;
+//                    }else {
+//                        if ()
+//
+//                    }
+//                    character
+//                }
+//            } else {
+//                if ('(' == c) {
+//                    startCount++;
+//                }
+//                if (')' == c) {
+//                    endCount++;
+//                }
+//                stack.push(c);
+//            }
+//        }
+//
+//    }
 }
