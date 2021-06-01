@@ -50,4 +50,12 @@ public interface INodeOption<Node extends Object> {
      */
     Node findEntryNodeOfLoop(Node head);
 
+    /**
+     * 删除链表节点
+     * @param head 链表head
+     * @param val 要删除的节点值
+     * @return head
+     */
+    Node deleteNode(Node head, int val);
+
 }

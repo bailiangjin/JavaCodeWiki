@@ -6,51 +6,50 @@ package com.blj.javawiki.algorithm.node;
  * @author bailiangjin
  * @date 2018/9/7
  */
-public class NodeOptionImpl implements INodeOption<Node> {
+public class NodeOptionImpl implements INodeOption<ListNode> {
 
     @Override
-    public Node reverseNode(Node head) {
+    public ListNode reverseNode(ListNode head) {
         if (null == head) {
             return null;
         }
 
-        Node pre = null;
-        Node next = null;
+        ListNode pre = null;
+        ListNode next = null;
 
-        while (null != head.next) {
+        while (null != head) {
             next = head.next;
             head.next = pre;
             pre = head;
             head = next;
         }
-        head.next = pre;
-        return head;
+        return pre;
     }
 
     @Override
-    public Node reverseNodeRecursive(Node head) {
+    public ListNode reverseNodeRecursive(ListNode head) {
         if (head == null || head.next == null) {
             //最终返回原来的尾结点
             return head;
         }
-        Node next = head.next;
+        ListNode next = head.next;
         //断开当前结点next指向
         head.next = null;
         //递归next结点对其进行相同操作
-        Node reversedNode = reverseNodeRecursive(next);
+        ListNode reversedNode = reverseNodeRecursive(next);
         //next结点 指向当前节点
         next.next = head;
         return reversedNode;
     }
 
     @Override
-    public Node findKthToTail(Node head, int k) {
+    public ListNode findKthToTail(ListNode head, int k) {
         if (null == head) {
             return null;
         }
 
-        Node aHead = head;
-        Node bHead = head;
+        ListNode aHead = head;
+        ListNode bHead = head;
 
         int i = 0;
         while (i < k - 1) {
@@ -70,7 +69,7 @@ public class NodeOptionImpl implements INodeOption<Node> {
     }
 
     @Override
-    public Node mergeNode(Node aHead, Node bHead) {
+    public ListNode mergeNode(ListNode aHead, ListNode bHead) {
 
         if (null == aHead) {
             return bHead;
@@ -78,9 +77,9 @@ public class NodeOptionImpl implements INodeOption<Node> {
             return aHead;
         }
 
-        Node mergeHead = null;
+        ListNode mergeHead = null;
 
-        if (aHead.data < bHead.data) {
+        if (aHead.val < bHead.val) {
             mergeHead = aHead;
             mergeHead.next = mergeNode(aHead.next, bHead);
         } else {
@@ -92,25 +91,25 @@ public class NodeOptionImpl implements INodeOption<Node> {
 
 
     @Override
-    public Node findEntryNodeOfLoop(Node head) {
+    public ListNode findEntryNodeOfLoop(ListNode head) {
         if (null == head || null == head.next) {
             return null;
         }
 
-        Node meetingNode = findMeetingNodeOfLoop(head);
+        ListNode meetingNode = findMeetingNodeOfLoop(head);
         if (null == meetingNode) {
             return null;
         }
 
-        Node pNode = meetingNode.next;
+        ListNode pNode = meetingNode.next;
         int nodeNumber = 1;
         while (pNode != meetingNode) {
             pNode = pNode.next;
             nodeNumber++;
         }
 
-        Node aNode = head;
-        Node bNode = head;
+        ListNode aNode = head;
+        ListNode bNode = head;
 
         int i = 0;
         while (i < nodeNumber) {
@@ -126,19 +125,38 @@ public class NodeOptionImpl implements INodeOption<Node> {
 
     }
 
+    @Override
+    public ListNode deleteNode(ListNode head, int val) {
+        ListNode pre = null;
+        ListNode next = head;
+        while (null != next) {
+            if (val == next.val) {
+                if (pre == null) {
+                    return next.next;
+                } else {
+                    pre.next = next.next;
+                }
+                break;
+            }
+            pre = next;
+            next = next.next;
+        }
+        return head;
+    }
+
     /**
      * 寻找快慢指针的相会节点
      *
      * @param head
      * @return
      */
-    public Node findMeetingNodeOfLoop(Node head) {
+    public ListNode findMeetingNodeOfLoop(ListNode head) {
         if (null == head || null == head.next) {
             return null;
         }
 
-        Node slow = head.next;
-        Node fast = slow.next;
+        ListNode slow = head.next;
+        ListNode fast = slow.next;
         while (null != slow && null != fast) {
 
             if (slow == fast) {
