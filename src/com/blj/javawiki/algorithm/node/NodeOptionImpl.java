@@ -47,25 +47,17 @@ public class NodeOptionImpl implements INodeOption<ListNode> {
         if (null == head) {
             return null;
         }
-
-        ListNode aHead = head;
-        ListNode bHead = head;
-
-        int i = 0;
-        while (i < k - 1) {
-            if (null != aHead.next) {
-                aHead = aHead.next;
-            } else {
-                return null;
-            }
-            i++;
+        ListNode slow = head;
+        ListNode fast = head;
+        for (int i = 0; i < k; i++) {
+            fast = fast.next;
         }
 
-        while (aHead.next != null) {
-            aHead = aHead.next;
-            bHead = bHead.next;
+        while (null != fast) {
+            fast = fast.next;
+            slow = slow.next;
         }
-        return bHead;
+        return slow;
     }
 
     @Override
