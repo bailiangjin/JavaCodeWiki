@@ -1,5 +1,8 @@
 package com.blj.javawiki.algorithm.node;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * node操作实现类
  *
@@ -163,8 +166,36 @@ public class NodeOptionImpl implements INodeOption<ListNode> {
                 fast = fast.next;
             }
         }
-
         return null;
     }
 
+    public int[] reversePrint(ListNode head) {
+        List<Integer> numberList = new ArrayList<>();
+        ListNode curHead = head;
+        while (null!=curHead) {
+            numberList.add(curHead.val);
+            curHead = curHead.next;
+        }
+        int length = numberList.size();
+        int[] result = new int[length];
+        for (int i = 0; i < length; i++) {
+            result[i] = numberList.get(length-1 -i);
+        }
+        return result;
+    }
+
+    public int[] reversePrint(ListNode node, int count) {
+        if (null == node) {
+            return new int[0];
+        }
+        if (null != node.next) {
+            int[] array = reversePrint(node.next, count + 1);
+            array[array.length - 1 - count] = node.val;
+            return array;
+        } else {
+            int[] array = new int[count + 1];
+            array[0] = node.val;
+            return array;
+        }
+    }
 }
