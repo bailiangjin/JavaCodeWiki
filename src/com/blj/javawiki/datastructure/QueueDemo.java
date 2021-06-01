@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class QueueDemo {
 
     public static void main(String[] args) {
-        LinkedList<String> linkedList=new LinkedList<String>(){{
+        LinkedList<String> linkedList = new LinkedList<String>() {{
 
             add("1");
             add("2");
@@ -22,7 +22,7 @@ public class QueueDemo {
 
         System.out.println(linkedList.element());
         System.out.println(linkedList);
-        while (null!=linkedList.poll()){
+        while (null != linkedList.poll()) {
             System.out.println(linkedList);
         }
 
