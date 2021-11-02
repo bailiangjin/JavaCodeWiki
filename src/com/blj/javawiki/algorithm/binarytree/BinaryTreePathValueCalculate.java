@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by bailiangjin on 2017/7/20.
  */
-public class BinaryTreePathValueCaculate {
+public class BinaryTreePathValueCalculate {
     /**
      * 二叉树的树结点
      */
